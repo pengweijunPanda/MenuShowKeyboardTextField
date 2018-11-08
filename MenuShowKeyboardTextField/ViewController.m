@@ -16,8 +16,6 @@
 
 @end
 
-static NSString * const UIMenuWillHideNotification = @"UIMenuWillHideNotification";
-
 @implementation ViewController
 
 - (void)dealloc{
@@ -37,10 +35,11 @@ static NSString * const UIMenuWillHideNotification = @"UIMenuWillHideNotificatio
 - (IBAction)btnClick:(UIButton *)sender {
     
     if (self.textField.isFirstResponder) {
+        //键盘弹出时处理，监听 UIMenuControllerWillHideMenuNotification,目标是消失Menu时让TextField的响应链恢复如初
         
         self.textField.textFieldResponder = sender;
         
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menuWillHide) name:UIMenuWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menuWillHide) name:UIMenuControllerWillHideMenuNotification object:nil];
         
     }else{
         
@@ -48,6 +47,7 @@ static NSString * const UIMenuWillHideNotification = @"UIMenuWillHideNotificatio
         
     }
     
+    //Blablabla Menu展示代码
     
     CGRect rect = sender.frame;
     
@@ -72,7 +72,7 @@ static NSString * const UIMenuWillHideNotification = @"UIMenuWillHideNotificatio
     
     [UIMenuController sharedMenuController].menuItems = nil;
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIMenuWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIMenuControllerWillHideMenuNotification object:nil];
     
 }
 

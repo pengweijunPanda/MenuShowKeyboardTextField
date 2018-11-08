@@ -12,9 +12,7 @@
 
 
 - (BOOL)canBecomeFirstResponder{
-
     return YES;
-    
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
@@ -25,7 +23,7 @@
 
 
 - (void)cut:(id)sender{
-    NSLog(@"--copy--");
+    NSLog(@"--cut--");
 }
 /*
 // Only override drawRect: if you perform custom drawing.
